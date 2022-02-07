@@ -4,7 +4,7 @@ const isNumber = function(n) {
 };
 
 function askNumber() {
-  let randomNum = 15;
+  let randomNum = Math.floor(Math.random() * 100) + 1;
   let num = prompt("Угадай число от 1 до 100", 12);
 
   if (num === null) {
