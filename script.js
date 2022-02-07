@@ -2,10 +2,10 @@
 const isNumber = function(n) {
   return (!isNaN(parseInt(n)) && isFinite(n));
 };
-
+let randomNum = Math.floor(Math.random() * 101);
 function askNumber() {
-  let randomNum = Math.floor(Math.random() * 100) + 1;
-  let num = prompt("Угадай число от 1 до 100", 12);
+  
+  let num = prompt("Угадай число от 1 до 100");
 
   if (num === null) {
     alert("Игра окончена");
