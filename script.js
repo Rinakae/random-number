@@ -1,58 +1,67 @@
 'use strict';
+const game = function() {
 
-let randomNum = Math.floor(Math.random() * 101);
-let countNum;
-
-const isNumber = function(n) {
-  return (!isNaN(parseInt(n)) && isFinite(n));
-};
-
-function createCounter() {
-  let counter = 10;
-  let fCounter = function() {
-    counter--;
-    return counter;
+  let isNumber = function(n) {
+    return (!isNaN(parseInt(n)) && isFinite(n));
   };
-  return fCounter;
-}
 
-countNum = createCounter();
+  let random = function() {
+    return Math.floor(Math.random() * 101);
+  };
 
-function askNumber() {
-  let cNum = countNum();
-  let num = prompt("Угадай число от 1 до 100");
+  let randomNumber = random();
+
+  function createCounter() {
+    let counter = 10;
+    let fCounter = function() {
+      counter--;
+      return counter;
+    };
+    return fCounter;
+  }
+
+  let countNum = createCounter();
+
+  function askNumber() {
+    let cNum = countNum();
+    let userNumber = prompt("Угадай число от 1 до 100");
+    console.dir(askNumber);
 
   if (cNum !== 0) {
 
-    if (num === null) {
+    if (userNumber === null) {
       alert("Игра окончена");
-    } else if (!isNumber(num) && num !== null) {
+    } else if (!isNumber(userNumber) && userNumber !== null) {
       alert("Введите число!");
       askNumber();
-    } else if (num > randomNum && num !== null) {
+    } else if (userNumber > randomNumber && userNumber !== null) {
       alert(`Загаданное число меньше, осталось ${cNum} попыток`);
       askNumber();
-    } else if (num < randomNum && num !== null) {
+    } else if (userNumber < randomNumber && userNumber !== null) {
       alert(`Загаданное число больше, осталось ${cNum} попыток`);
       askNumber();
-    } else if (num == randomNum && num !== null) {
+    } else if (userNumber == randomNumber && userNumber !== null) {
       let playAgain = confirm("Поздравляю, Вы угадали!!! Хотели бы сыграть еще?");
       if (playAgain !== true) {
         alert("Игра окончена"); 
       } else {
-        askNumber();
+        game();
       }    
     } 
   
-  } else {
-    let playAgain = confirm("Попытки закончились, хотите сыграть еще?");
-     if (playAgain !== true) {
+    } else if (cNum == 0) {
+      let playAgain = confirm("Попытки закончились, хотите сыграть еще?");
+      if (playAgain !== true) {
         alert("Игра окончена"); 
-    } else {
-      askNumber();
-    }
-  } 
+      } else {
+        game();
+      }
+    } 
   cNum--;
 
 }
 askNumber();
+
+};
+
+game();
